@@ -48,25 +48,19 @@ else {
         });
       });
     } else {
-      Meteor.call("velocity/mirrors/request", {
-        framework: 'mocha',
-        rootUrlPath: "?mocha=true"
-      }, function(err, msg){
-        if (err){
-          console.log("error requesting mirror", err);
-        } else {
-          var fileCopier = new Velocity.FileCopier({
-            targetFramework: "mocha",
-            shouldCopy: function (filepath) {
-              return true;
-            },
-            convertTestPathToMirrorPath: function (filePath) {
-              return filePath;
-            }
-          })
-          fileCopier.start();
-        }
-      });
+      // FIXME
+      Meteor.setTimeout(function() {
+        Meteor.call("velocity/mirrors/request", {
+          framework: 'mocha',
+          mirrorId: 'mocha',
+          rootUrlPath: "?mocha=true"
+        }, function(err, msg){
+          if (err){
+            console.log("error requesting mirror", err);
+          }
+        });
+      }, 100);
+
     }
   });
 

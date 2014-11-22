@@ -17,10 +17,11 @@ Npm.depends({
 //Npm.depends({chai: "1.9.0"});
 
 Package.on_use(function (api, where) {
-  api.use(['velocity:core@0.3.0'], "server");
+  api.use(['velocity:core@1.0.0-rc.8'], "server");
+  api.use(['velocity:node-soft-mirror@0.0.7'], ["server", "client"], { unordered: true });
   api.use(['velocity:html-reporter@0.3.1'], "client");
   api.use(['templating@1.0.6'], "client");
-  api.use(['velocity:shim@0.0.1'], ["client", "server"]);
+  api.use(['velocity:shim@0.0.3'], ["client", "server"]);
 
   api.add_files(["reporter.js", "server.js"], "server");
   api.add_files(["client.html", "mocha.js", "reporter.js", "client.js", "chai.js"], "client");
